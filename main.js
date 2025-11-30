@@ -31,7 +31,7 @@ function generateRandomBirthdate(minAge, maxAge) {
 
   return date.toISOString(); // YYYY-MM-DDTHH:mm:ss.sssZ
 }
-function main(dtoIn) {
+export function main(dtoIn) {
   // 1. načítaj vstup
   const count = dtoIn.count;
   const minAge = dtoIn.age.min;
@@ -186,4 +186,3 @@ for (let i = 0; i < count; i++) {
   return employees;
 }
 
-module.exports = main;

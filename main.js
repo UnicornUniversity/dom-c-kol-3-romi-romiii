@@ -150,6 +150,8 @@ export function main(dtoIn) {
 
   // 5. prázdne pole zamestnancov
   const employees = [];
+  // množina použitých dátumov narodenia, aby sa neopakovali
+  const usedBirthdates = new Set();
 
 // generovanie zamestnancov v cykle (2. iterácia algoritmu)
 for (let i = 0; i < count; i++) {
@@ -163,8 +165,13 @@ for (let i = 0; i < count; i++) {
     // 2.3 – výber pohlavia
     const gender = Math.random() < 0.5 ? "male" : "female";
 
-    // 2.4 – generovanie dátumu narodenia
-    const birthdate = generateRandomBirthdate(minAge, maxAge);
+        // 2.4 – generovanie dátumu narodenia (bez opakovania)
+    let birthdate;
+    do {
+      birthdate = generateRandomBirthdate(minAge, maxAge);
+    } while (usedBirthdates.has(birthdate));
+
+    usedBirthdates.add(birthdate);
 
     // 2.5 – výber pracovného úväzku
     const workload = getRandomElement(workloads);
@@ -185,4 +192,3 @@ for (let i = 0; i < count; i++) {
   // 6. vráť výsledok
   return employees;
 }
-
